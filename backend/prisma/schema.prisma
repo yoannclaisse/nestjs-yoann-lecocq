@@ -2,15 +2,35 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// générateur le code CRUD, les resolver et les modèles
+generator typegraphql {
+  //package node
+  provider = "typegraphql-prisma"
+  //sortie
+  output   = "../prisma/generated/type-graphql"
+}
+
+// TEST AUTRE GENERATEUR plus de potentiel
+// // génère les CRUD's
+// generator nestgraphql {
+//   provider         = "node node_modules/prisma-nestjs-graphql"
+//   // for yarn monorepos
+//   // provider = "prisma-nestjs-graphql"
+//   output           = "../prisma/generated/prisma-nestjs-graphql"
+//   fields_NG_from   = "@nestjs/graphql"
+//   fields_NG_output = false
+//   fields_NG_model  = true
+// }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
-  email    String  @unique
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  email    String @unique
   password String
   todos    Todo[]
 }
