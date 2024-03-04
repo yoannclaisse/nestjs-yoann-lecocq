@@ -19,3 +19,12 @@ PGADMIN_DEFAULT_PASSWORD=adminpassword
 ```
 
 La base donnée est maintenant crée et consultable sur le port aloué au pgadmin.
+
+2 - Initialisation de prisma, qui est un ORM (Object-Relational Mapping) qui facilite l'interaction avec la base de données PostgreSQL. Nous allons utiliser Prisma pour définir le modèle de données et créer des tables dans PostgreSQL avec un schema.
+
+##### Instaler prisma
+```
+npm install prisma --save-dev
+```
+
+
