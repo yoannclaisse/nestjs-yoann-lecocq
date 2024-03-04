@@ -35,3 +35,47 @@ Cela génère un dossier "prisma" contenant un fichier "schema.prisma", prisma s
 
 
 
+REQUETE GRAPHQL
+
+# mutation($createUser: UserCreateInput!){createOneUser(data: $createUser){id username}}
+# mutation($createTodo: TodoCreateInput!){createOneTodo(data: $createTodo){id createdAt}}
+# mutation CreateTodo($todoData: TodoCreateInput!) {
+#   createOneTodo(data: $todoData) {
+#     id
+#     title
+#     description
+#     completed
+#     createdAt
+#     updatedAt
+#     userId
+#   }
+# }
+# mutation UpdateTodoTest($updateTodo: TodoUpdateInput!, $filter: TodoWhereUniqueInput!) {
+#   updateOneTodo(data: $updateTodo, where: $filter){title completed id updatedAt createdAt}
+# }
+# query {users {id todos{title description user{id}}}}
+# query getUserByNameWithTodos($input: UserWhereUniqueInput!){getUser(where: $input){username todos{description id title}}}
+#"input": {"username": "yoyo2", "email": "test2@gmail.fr", "todos": []},
+# "todoData": 
+#   {
+#     "title": "test title",
+#     "description": "test descriptionnnnnnn",
+#     "user": {"connect": {"id": 1}}
+#   },
+
+# query getTodosByUsername($where: TodoWhereInput){todos(where: $where){id title description user{username}}}
+
+# mutation($input2: TodoWhereUniqueInput!) {deleteOneTodo(where: $input2){id}}
+
+# mutation($input3: TodoUpdateInput! $where2: TodoWhereUniqueInput!)
+# 	{
+#     updateOneTodo(data: $input3 where: $where2)
+#     {title}
+#   }
+subscription {
+  todos {
+    id
+  }
+}
+
+

@@ -265,7 +265,7 @@ function applyTypeClassEnhanceConfig<
 }
 
 const modelsInfo = {
-  User: ["id", "username", "email", "password"],
+  User: ["id", "username", "email"],
   Todo: ["id", "title", "description", "completed", "createdAt", "updatedAt", "userId"]
 };
 

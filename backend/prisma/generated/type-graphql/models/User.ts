@@ -22,10 +22,7 @@ export class User {
   })
   email!: string;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  password!: string;
+  password?: string;
 
   todos?: Todo[];
 
