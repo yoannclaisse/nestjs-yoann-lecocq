@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:latest
     ports:
-      - "6090:5432"
+      - "${POSTGRES_HOST}:5432"
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}

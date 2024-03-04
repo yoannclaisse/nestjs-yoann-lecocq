@@ -27,4 +27,12 @@ La base donnée est maintenant crée et consultable sur le port aloué au pgadmi
 npm install prisma --save-dev
 ```
 
+##### Initialiser Prisma
+```
+npx prisma init
+```
+Cela génère un dossier "prisma" contenant un fichier "schema.prisma", prisma se servira de ce shema pour modifier la base de donnée postegre initialiser au début
+
+
+
 
