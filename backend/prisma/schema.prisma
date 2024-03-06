@@ -32,7 +32,7 @@ model User {
   username String @unique
   email    String @unique
   /// @TypeGraphQL.omit(output: true)
-  password String
+  password String @default("")
   todos    Todo[]
 }
 
