@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GraphqlService } from '../graphql.service';
 import { Apollo } from 'apollo-angular';
 import { User } from '../models/graphql.model';
+import { SigninComponent } from '../signin/signin.component';
 
 @Component({
   selector: 'app-login',

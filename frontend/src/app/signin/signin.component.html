@@ -1,1 +1,28 @@
-<p>signin works!</p>
+<h1>signin Page</h1>
+<input
+  class="input-user"
+  type="text"
+  placeholder="Your Username Here !!"
+  #username
+/>
+
+<input
+  class="input-user"
+  type="text"
+  placeholder="Your Mail Here !!"
+  #mail
+/>
+
+<input
+  class="input-user"
+  type="password"
+  placeholder="Your password Here !!"
+  #password
+/>
+<button
+  class="primary button-nav-user"
+  type="button"
+  (click)="signin(username.value, mail.value, password.value)"
+>
+  sign in
+</button>
