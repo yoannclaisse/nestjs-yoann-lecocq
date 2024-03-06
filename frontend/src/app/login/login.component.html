@@ -1,0 +1,30 @@
+<h1>login Page</h1>
+<input
+  class="input-user"
+  type="text"
+  placeholder="Your Mail Here !!"
+  #mail
+/>
+
+<input
+  class="input-user"
+  type="password"
+  placeholder="Your password Here !!"
+  #password
+/>
+
+<button
+class="primary button-nav-user"
+type="button"
+(click)="login(mail.value, password.value)"
+>
+login
+</button>
+
+<!-- <button
+class="primary button-nav-user"
+type="button"
+(click)="signin(mail.value, password.value)"
+>
+sign in
+</button> -->

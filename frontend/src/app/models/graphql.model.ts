@@ -33,3 +33,10 @@ export interface TodoQueryResponse {
     updateOneTodo: Todo | null;
     errors: any
 }
+
+export interface UserQueryResponse {
+    findFirstUserOrThrow: User | null
+    createOneUser: User | null
+    user: User | null;
+    errors: any
+}
