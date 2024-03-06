@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Connexion du front avec le back
+
+Pour connecter Angular à un backend Apollo, je vais travailler avec GraphQL, qui est un langage de requête pour les APIs, et Apollo Client, qui est une bibliothèque JavaScript permettant de gérer les requêtes GraphQL côté client.
+
+Installer Apollo client dans le projet angular
+```
+ng add apollo-angular
+```
+
