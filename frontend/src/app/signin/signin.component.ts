@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GraphqlService } from '../graphql.service';
 import { Apollo } from 'apollo-angular';
+import { User } from '../models/graphql.model';
 
 @Component({
   selector: 'app-signin',
@@ -14,7 +15,15 @@ export class SigninComponent {
 
   constructor(private graphqlService: GraphqlService) { }
   signin(username: string, mail: string, password: string) {
-    throw new Error('Method not implemented.');
+    this.graphqlService.signin(username, mail, password).subscribe(
+      // le premier evt d'un Observalble sera toujours next, CAD qu'on retourne une valeur si tout s'est bien passé
+      (result: User) => {
+      },
+      //  Le 2e evt d'un Observable sera toujour error
+      (error: any) => {
+        console.log("ERROR :", error)
+      }
+    )
   }
 
 }

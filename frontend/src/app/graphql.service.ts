@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Apollo, ApolloModule } from 'apollo-angular';
+import { Apollo, MutationResult } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { ApolloQueryResult, InMemoryCache, gql } from '@apollo/client/core';
 import { environment } from '../environments/environment.development';
@@ -8,10 +8,17 @@ import { Observable } from 'rxjs';
 import { subscribe } from 'graphql';
 
 // VARIABLES POUR GQL QUERIES
+
 // { "user": {"email": {"equals": "test@test.com"}, "password": {"equals": "azerty789"}} }
 const getUserByEmailAndPassword = gql`query getUserByEmailAndPassword($user: UserWhereInput!){
   findFirstUserOrThrow(where: $user) {
     id, username, email}
+  }`
+
+// { "createOneUser": {"username": "yoyo3", "email":"yoyo@yoyo.com", "password": "azerty789", "todos": []} }
+const createOneUser = gql`mutation createOneUser($createOneUser: UserCreateInput!){
+  createOneUser(data: $createOneUser){
+    id username email}
   }`
 
 @Injectable({
@@ -34,7 +41,7 @@ export class GraphqlService {
     })
   }
 
-  // ICI je  m'occupe de faire la query, elle retourne un observable et on analyse le sub et l'error
+  // ICI je  m'occupe de faire la query pour le login, elle retourne un observable et on analyse le sub et l'error
   login(mail: string, password: string): Observable<User> {
     const graphqlRequest =
       this.apollo.watchQuery<UserQueryResponse>({
@@ -59,5 +66,36 @@ export class GraphqlService {
         )
       }
     )
+  }
+
+  signin(username: string, email: string, password: string): Observable<User> {
+    return new Observable<User>(
+      (subscriber) => {
+        // requête apollo pour créer un user
+        this.apollo.mutate<UserQueryResponse>({
+          mutation: createOneUser,
+          variables: { "createOneUser": { "username": username, "email": email, "password": password, "todos": [] } }
+        })
+          // on subscribe a la requête graphQL pour recup' le resultat de la requêt graphQL
+          .subscribe(
+            (result: MutationResult<UserQueryResponse>) => {
+              console.log("Result :", result)
+              const user = result?.data?.createOneUser
+              console.log("User :", user)
+              if (!user) {
+                // On déclenche l'evt error
+                subscriber.error("unable to create user")
+              } else {
+                // On déclenche l'evt next
+                subscriber.next(user)
+              }
+
+            },
+            // On entre dans l'evt error de la requête graphQL
+            (error: any) => {
+              // On transfère le message d'erreur
+              subscriber.error(error)
+            })
+      })
   }
 }
