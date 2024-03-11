@@ -1,28 +1,29 @@
-<h1>login Component</h1>
-<input
-  class="input-user"
-  type="text"
-  placeholder="Your Mail Here !!"
-  required
-  #mail
-/>
+<div class="login-block">
+  <input
+    class="input-user"
+    type="text"
+    placeholder="Your Mail Here !!"
+    required
+    #mail
+  />
 
-<input
-  class="input-user"
-  type="password"
-  placeholder="Your password Here !!"
-  required
-  #password
-/>
+  <input
+    class="input-user"
+    type="password"
+    placeholder="Your password Here !!"
+    required
+    #password
+  />
 
-<button
-class="primary button-nav-user"
-type="button"
-(click)="login(mail.value, password.value)"
->
-login
-</button>
+  <button
+    class="button"
+    type="button"
+    (click)="login(mail.value, password.value)"
+  >
+    login
+  </button>
 
-<label class="status-sentence">
-  {{ loginStatus }}
-</label>
+  <label class="status-sentence">
+    {{ loginStatus }}
+  </label>
+</div>

@@ -1,32 +1,36 @@
-<h1>Signin Component</h1>
-<input
-  class="input-user"
-  type="text"
-  placeholder="Your Username Here !!"
-  #username
-/>
+<div class="signin-block">
+  <input
+    class="input-user"
+    type="text"
+    placeholder="Your Username Here !!"
+    #username
+  />
 
-<input
-  class="input-user"
-  type="email"
-  placeholder="Your Mail Here !!"
-  #email
-/>
+  <input
+    class="input-user"
+    type="email"
+    placeholder="Your Mail Here !!"
+    #email
+  />
 
-<input
-  class="input-user"
-  type="password"
-  placeholder="Your password Here !!"
-  #password
-/>
-<button
-  class="primary button-nav-user"
-  type="button"
-  (click)="signin(username.value, email.value, password.value)"
->
-  sign in
-</button>
+  <input
+    class="input-user"
+    type="password"
+    placeholder="Your password Here !!"
+    #password
+  />
+  <button
+    class="button"
+    type="button"
+    (click)="signin(username.value, email.value, password.value)"
+  >
+    sign in
+  </button>
 
-<label class="status-sentence">
-  {{ signinStatus }}
-</label>
+  <div class="status-sentence-error">
+    {{ signinStatusError }}
+  </div>
+  <div class="status-sentence-success">
+    {{ signinStatusSuccess }}
+  </div>
+</div>
