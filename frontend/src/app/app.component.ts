@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
+import { GraphqlService } from './graphql.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,5 +12,10 @@ import { SigninComponent } from './signin/signin.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
   title = 'frontend';
+
+  constructor (public graphqlService: GraphqlService) {
+
+  }
 }
