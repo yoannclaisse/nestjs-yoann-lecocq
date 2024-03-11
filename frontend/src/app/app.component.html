@@ -1,5 +1,6 @@
 <div class="body">
   <div class="wrapper">
+    @if (!this.graphqlService.user) {
     <div class="title">
       <h1>Welcome to todo web App</h1>
     </div>
@@ -10,16 +11,21 @@
         routerLink="/login"
         routerLinkActive="activebutton"
         ariaCurrentWhenActive="page"
-        >Login</a
-      >
+        >Login</a>
       <a
         class="button"
         routerLink="/signin"
         routerLinkActive="activebutton"
         ariaCurrentWhenActive="page"
-        >Signin</a
-      >
+        >Signin</a>
     </div>
-    <router-outlet />
+    } @else {
+      <a
+        class="button"
+        routerLink="/logout"
+        routerLinkActive="activebutton"
+        ariaCurrentWhenActive="page"
+        >Logout</a>
+    } <router-outlet />
   </div>
 </div>
