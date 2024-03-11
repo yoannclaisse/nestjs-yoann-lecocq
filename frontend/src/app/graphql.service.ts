@@ -5,7 +5,7 @@ import { ApolloQueryResult, InMemoryCache, gql } from '@apollo/client/core';
 import { environment } from '../environments/environment.development';
 import { User, UserQueryResponse } from './models/graphql.model';
 import { Observable } from 'rxjs';
-import { subscribe } from 'graphql';
+import { sha256 } from 'js-sha256';
 
 // VARIABLES POUR GQL QUERIES
 
@@ -43,10 +43,13 @@ export class GraphqlService {
 
   // ICI je  m'occupe de faire la query pour le login, elle retourne un observable et on analyse le sub et l'error
   login(mail: string, password: string): Observable<User> {
+
+    const hashedPassword = sha256(password)
+
     const graphqlRequest =
       this.apollo.watchQuery<UserQueryResponse>({
         query: getUserByEmailAndPassword,
-        variables: { "user": { "email": { "equals": mail }, "password": { "equals": password } } },
+        variables: { "user": { "email": { "equals": mail }, "password": { "equals": hashedPassword } } },
         fetchPolicy: "no-cache"
       }).valueChanges
     return new Observable<User>(
@@ -69,12 +72,15 @@ export class GraphqlService {
   }
 
   signin(username: string, email: string, password: string): Observable<User> {
+
+    const hashedPassword = sha256(password)
+
     return new Observable<User>(
       (subscriber) => {
         // requête apollo pour créer un user
         this.apollo.mutate<UserQueryResponse>({
           mutation: createOneUser,
-          variables: { "createOneUser": { "username": username, "email": email, "password": password, "todos": [] } }
+          variables: { "createOneUser": { "username": username, "email": email, "password": hashedPassword, "todos": [] } }
         })
           // on subscribe a la requête graphQL pour recup' le resultat de la requêt graphQL
           .subscribe(
