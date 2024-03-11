@@ -108,4 +108,14 @@ export class GraphqlService {
             })
       })
   }
+
+  logout(): boolean {
+    if (!!this.user) {
+      this.user = null
+      return true
+    } else {
+      return false
+    }
+
+  }
 }
