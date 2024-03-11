@@ -26,12 +26,15 @@ const createOneUser = gql`mutation createOneUser($createOneUser: UserCreateInput
 })
 export class GraphqlService {
 
+  user: User | null = null
+
   /**
    * 
    * @param apollo
    * @param httpLink 
    */
   constructor(private apollo: Apollo, private httpLink: HttpLink) {
+    console.log('toto')
     // c'est ici que ça connecte le front avec le back
     this.apollo.create({
       cache: new InMemoryCache(),
@@ -58,6 +61,7 @@ export class GraphqlService {
           (result: ApolloQueryResult<UserQueryResponse>) => {
             const user = result.data.findFirstUserOrThrow
             if (!!user) {
+              this.user = user
               // on déclenche l'evt "next"
               subscriber.next(user)
             }
