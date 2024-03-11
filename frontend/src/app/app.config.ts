@@ -5,7 +5,8 @@ import { routes } from './app.routes';
 
 // faire un import de provideHttpClient car le client graphQL va e=xecuter des requêtes HTTP
 import { provideHttpClient } from '@angular/common/http';
+import { Apollo } from 'apollo-angular';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient()]
+  providers: [provideRouter(routes), provideHttpClient(), Apollo]
 };

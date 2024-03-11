@@ -6,7 +6,7 @@ import { User } from '../models/graphql.model';
 @Component({
   selector: 'app-signin',
   standalone: true,
-  providers: [GraphqlService, Apollo],
+  providers: [],
   imports: [],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'

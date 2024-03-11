@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { GraphqlService } from '../graphql.service';
 import { Apollo } from 'apollo-angular';
 import { User } from '../models/graphql.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  providers: [GraphqlService, Apollo],
+  providers: [],
   imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -15,7 +16,7 @@ export class LoginComponent {
 
   loginStatus: String = ""
 
-  constructor(private graphqlService: GraphqlService) { }
+  constructor(private graphqlService: GraphqlService, private router: Router) { }
 
   // ICI on met en place la fonction "onclick" login qui va faire les verifications depuis le graphql.service.ts lorsque l'on click sur le button login
   login(mail: string, password: string) {
@@ -38,6 +39,7 @@ export class LoginComponent {
     this.graphqlService.login(mail, password).subscribe(
       // le premier evt d'un Observalble sera toujours next, CAD qu'on retourne une valeur si tout s'est bien passé
       (result: User) => {
+        this.router.navigateByUrl('/account')
       },
       //  Le 2e evt d'un Observable sera toujour error
       (error: any) => {
