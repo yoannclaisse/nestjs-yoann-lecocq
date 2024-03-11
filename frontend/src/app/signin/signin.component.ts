@@ -14,45 +14,47 @@ import { User } from '../models/graphql.model';
 
 export class SigninComponent {
 
-  signinStatus: String = ""
+  signinStatusError: String = ""
+  signinStatusSuccess: String = ""
 
   constructor(private graphqlService: GraphqlService) { }
   signin(username: string, mail: string, password: string) {
     // verification du champs username
-    this.signinStatus = ""
+    this.signinStatusError = ""
     if (!username) {
-      this.signinStatus = "Please enter a name"
+      this.signinStatusError = "Please enter a name"
       return
     }
 
     // verification du champs mail
-    this.signinStatus = ""
+    this.signinStatusError = ""
     if (!mail) {
-      this.signinStatus = "Please enter a valid mail"
+      this.signinStatusError = "Please enter a valid mail"
       return
     }
 
     // verification du champs password
-    this.signinStatus = ""
+    this.signinStatusError = ""
     if (!password) {
-      this.signinStatus = "Please enter a valid password"
+      this.signinStatusError = "Please enter a valid password"
       return
     }
 
     this.graphqlService.signin(username, mail, password).subscribe(
       // le premier evt d'un Observalble sera toujours next, CAD qu'on retourne une valeur si tout s'est bien passé
       (result: User) => {
+        this.signinStatusSuccess = "Congratulation, you are registred now, go to login page to connect to your account"
       },
       //  Le 2e evt d'un Observable sera toujour error
       (error: string) => {
         console.log("ERROR :", error)
         const errorMessage: string = error + ''
         if(errorMessage.includes('Unique constraint failed on the fields: (`email`)') ) {
-          this.signinStatus = 'email already used'
+          this.signinStatusError = 'email already used'
         }
 
         if(errorMessage.includes('Unique constraint failed on the fields: (`username`)') ) {
-          this.signinStatus = 'username already used'
+          this.signinStatusError = 'username already used'
         }
       }
     )
