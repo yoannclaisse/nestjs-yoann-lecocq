@@ -44,8 +44,16 @@ export class SigninComponent {
       (result: User) => {
       },
       //  Le 2e evt d'un Observable sera toujour error
-      (error: any) => {
+      (error: string) => {
         console.log("ERROR :", error)
+        const errorMessage: string = error + ''
+        if(errorMessage.includes('Unique constraint failed on the fields: (`email`)') ) {
+          this.signinStatus = 'email already used'
+        }
+
+        if(errorMessage.includes('Unique constraint failed on the fields: (`username`)') ) {
+          this.signinStatus = 'username already used'
+        }
       }
     )
   }
