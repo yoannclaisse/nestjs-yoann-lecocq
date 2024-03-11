@@ -11,10 +11,34 @@ import { User } from '../models/graphql.model';
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css'
 })
+
 export class SigninComponent {
+
+  signinStatus: String = ""
 
   constructor(private graphqlService: GraphqlService) { }
   signin(username: string, mail: string, password: string) {
+    // verification du champs username
+    this.signinStatus = ""
+    if (!username) {
+      this.signinStatus = "Please enter a name"
+      return
+    }
+
+    // verification du champs mail
+    this.signinStatus = ""
+    if (!mail) {
+      this.signinStatus = "Please enter a valid mail"
+      return
+    }
+
+    // verification du champs password
+    this.signinStatus = ""
+    if (!password) {
+      this.signinStatus = "Please enter a valid password"
+      return
+    }
+
     this.graphqlService.signin(username, mail, password).subscribe(
       // le premier evt d'un Observalble sera toujours next, CAD qu'on retourne une valeur si tout s'est bien passé
       (result: User) => {
