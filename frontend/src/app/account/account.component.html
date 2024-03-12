@@ -1,4 +1,4 @@
-<div class="username">hello {{ this.graphqlService.user?.username }}</div>
+<div class="username">Hello : {{ this.graphqlService.user?.username }}</div>
 
 <section>
   <label class="status-sentence">
@@ -6,9 +6,11 @@
   </label>
   <div class="container">
     <ul class="container-todo">
+      <div class="title">Your todos </div>
       @for (todo of graphqlService.user?.todos; track todo.id) {
       <div class="todo">
         <li class="todo-detail" [class.checked]="todo.completed">
+
           <input
             type="checkbox"
             #completed
@@ -34,11 +36,11 @@
             #description
             value="{{ todo.description }}"
           />
-          <button class="primary" type="button" (click)="removeTodo(todo.id)">
+          <button class="button" type="button" (click)="removeTodo(todo.id)">
             remove task
           </button>
           <button
-            class="primary"
+            class="button"
             type="button"
             (click)="
               changeTodo(
@@ -53,7 +55,9 @@
           </button>
         </li>
       </div>
-      } @empty { Empty list of todos } @if (graphqlService.user) {
+
+      } @empty {  } @if (graphqlService.user) {
+        <div class="title"> Add your todos </div>
       <li>
         <div class="add-todo">
           <input
@@ -66,7 +70,7 @@
             placeholder="Your task here !!"
             [(ngModel)]="newDescription"
           />
-          <button class="primary" type="button" (click)="addTodo()">
+          <button class="button" type="button" (click)="addTodo()">
             add task
           </button>
         </div>
