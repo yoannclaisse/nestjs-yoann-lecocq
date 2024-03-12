@@ -1,8 +1,8 @@
 # nestjs-yoann-lecocq
 
-Ceci est un projet de cours developper avec NestJs pour le back et angular pour le front.
+Ceci est un projet de cours developpé avec NestJs pour le back et angular pour le front.
 
-C'est une application web de Todo, ce projet mettera en place Le CRUD ert utilisera postgreSQL comme base de donnée dans un container docker.
+C'est une application web de Todo, ce projet mettra en place Le CRUD ert utilisera postgreSQL comme base de donnée dans un container docker.
 
 ## Utilisation de la base de donnée postegresql sur un container docker et prisma
 Pour l'utilisation de la base de donnée qui tourne sur un container docker :
@@ -30,8 +30,6 @@ PGADMIN_DEFAULT_PASSWORD_FILE=adminpassword
 DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
 ```
 
-2 - Initialisation de prisma, qui est un ORM (Object-Relational Mapping) qui facilite l'interaction avec la base de données PostgreSQL. Nous allons utiliser Prisma pour définir le modèle de données et créer des tables dans PostgreSQL avec un schema.
-
 ##### Maitenant les variables d'environnement sont mise en place 
 
 
@@ -39,9 +37,9 @@ DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POS
 Aller dans "backend" et faire :
 ```
 npm i                       #installation des dépendences
-npm run prisma-generate     #mets en place la connexion de prisma
-npm run prisma-db-push      #mets en place la connexion de prisma
-docker compose up -d        #base de donnée port 5050
+npm run prisma-generate     #mise en place la connexion de prisma
+npm run prisma-db-push      #mise en place la connexion de prisma
+docker compose up -d        #base de donnée port 5050 via pgadmin
 npm run start               #nestJS port 3000
 ```
 ## Comment run le projet frontend:
@@ -50,6 +48,22 @@ Aller dans "frontend" et faire :
 npm i           #installation des dépendences
 npm run start   #Angular port 4200
 ```
+
+### Ports alloués
+http://localhost:3000/ = playground prisma // graphQL
+http://localhost:5050/ = pgadmin
+http://localhost:4200/ = frontend angular
+
+## User navigation
+1 - Se creer un compte dans "signin"
+2 - Aller dans "login" pour se connecter
+3 - Acces au compte utilisateur
+4 - Ajouter une todo
+5 - Modifier la todo
+6 - Suprimer la todo
+
+
+
 
 
 
