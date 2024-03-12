@@ -1,78 +1,77 @@
 <div class="username">hello {{ this.graphqlService.user?.username }}</div>
 
 <section>
-
-    <label class="status-sentence">
-      {{ resultStatus }}
-    </label>
-    <div class="container">
-      <ul class="container-todo">
-        @for (todo of graphqlService.user?.todos; track todo.id) {
-        <div class="todo">
-          <li class="todo-detail" [class.checked]="todo.completed">
-            <input
-              type="checkbox"
-              #completed
-              [checked]="todo.completed"
-              (change)="
-                changeTodo(
-                  todo.id,
-                  completed.checked,
-                  title.value,
-                  description.value
-                )
-              "
-            />
-            <input
-              class="input-title-todo"
-              type="text"
-              #title
-              value="{{ todo.title }}"
-            />
-            <input
-              class="input-description-todo"
-              type="text"
-              #description
-              value="{{ todo.description }}"
-            />
-            <button class="primary" type="button" (click)="removeTodo(todo.id)">
-              remove task
-            </button>
-            <button
-              class="primary"
-              type="button"
-              (click)="
-                changeTodo(
-                  todo.id,
-                  completed.checked,
-                  title.value,
-                  description.value
-                )
-              "
-            >
-              modify task
-            </button>
-          </li>
-        </div>
-        } @empty { Empty list of todos } @if (graphqlService.user) {
-        <li>
-          <div class="add-todo">
-            <input
-              type="text"
-              placeholder="Your title here !!"
-              [(ngModel)]="newTitle"
-            />
-            <input
-              type="text"
-              placeholder="Your task here !!"
-              [(ngModel)]="newDescription"
-            />
-            <button class="primary" type="button" (click)="addTodo()">
-              add task
-            </button>
-          </div>
+  <label class="status-sentence">
+    {{ resultStatus }}
+  </label>
+  <div class="container">
+    <ul class="container-todo">
+      @for (todo of graphqlService.user?.todos; track todo.id) {
+      <div class="todo">
+        <li class="todo-detail" [class.checked]="todo.completed">
+          <input
+            type="checkbox"
+            #completed
+            [checked]="todo.completed"
+            (change)="
+              changeTodo(
+                todo.id,
+                completed.checked,
+                title.value,
+                description.value
+              )
+            "
+          />
+          <input
+            class="input-title-todo"
+            type="text"
+            #title
+            value="{{ todo.title }}"
+          />
+          <input
+            class="input-description-todo"
+            type="text"
+            #description
+            value="{{ todo.description }}"
+          />
+          <button class="primary" type="button" (click)="removeTodo(todo.id)">
+            remove task
+          </button>
+          <button
+            class="primary"
+            type="button"
+            (click)="
+              changeTodo(
+                todo.id,
+                completed.checked,
+                title.value,
+                description.value
+              )
+            "
+          >
+            modify task
+          </button>
         </li>
-        }
-      </ul>
-    </div>
-  </section>
+      </div>
+      } @empty { Empty list of todos } @if (graphqlService.user) {
+      <li>
+        <div class="add-todo">
+          <input
+            type="text"
+            placeholder="Your title here !!"
+            [(ngModel)]="newTitle"
+          />
+          <input
+            type="text"
+            placeholder="Your task here !!"
+            [(ngModel)]="newDescription"
+          />
+          <button class="primary" type="button" (click)="addTodo()">
+            add task
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</section>

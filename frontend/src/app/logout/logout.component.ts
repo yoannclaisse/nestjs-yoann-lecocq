@@ -14,7 +14,6 @@ export class LogoutComponent {
 
   constructor(private graphqlService: GraphqlService, private router: Router) {
     if(this.graphqlService.logout()) {
-      console.log(this.graphqlService.user)
       this.router.navigateByUrl('/')
     }
   }

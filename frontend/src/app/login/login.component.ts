@@ -18,7 +18,6 @@ export class LoginComponent {
 
   constructor(private graphqlService: GraphqlService, private router: Router) { }
 
-  // ICI on met en place la fonction "onclick" login qui va faire les verifications depuis le graphql.service.ts lorsque l'on click sur le button login
   login(mail: string, password: string) {
         // verification du champs username
         this.loginStatus = ""

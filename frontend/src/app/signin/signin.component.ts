@@ -49,11 +49,11 @@ export class SigninComponent {
       (error: string) => {
         console.log("ERROR :", error)
         const errorMessage: string = error + ''
-        if(errorMessage.includes('Unique constraint failed on the fields: (`email`)') ) {
+        if (errorMessage.includes('Unique constraint failed on the fields: (`email`)')) {
           this.signinStatusError = 'email already used'
         }
 
-        if(errorMessage.includes('Unique constraint failed on the fields: (`username`)') ) {
+        if (errorMessage.includes('Unique constraint failed on the fields: (`username`)')) {
           this.signinStatusError = 'username already used'
         }
       }
