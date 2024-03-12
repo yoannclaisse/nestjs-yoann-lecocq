@@ -29,9 +29,7 @@ interface Context {
       context: (): Context => ({ prisma: new PrismaClient() }),
     }),
   ],
-  // controllers: [AppController],
-  // providers: [AppService],
-  providers: [    // register all resolvers inside `providers` of the Nest module
+  providers: [
     UserRelationsResolver,
     UserCrudResolver,
     TodoRelationsResolver,
