@@ -6,12 +6,12 @@ C'est une application web de Todo, ce projet mettera en place Le CRUD ert utilis
 
 ## Utilisation de la base de donnée postegresql sur un container docker et prisma
 Pour l'utilisation de la base de donnée qui tourne sur un container docker :
-1 - creer un .env avec les infos de connexion
+1 - creer un .env à la racine dans le dossier "backend" avec les infos de connexion suivante
 ```
 #PostgreSQL
-POSTGRES_DB=todo
-POSTGRES_USER=admintodo
-POSTGRES_PASSWORD=S3cret.!
+POSTGRES_DB=...
+POSTGRES_USER=...
+POSTGRES_PASSWORD=...
 POSTGRES_PORT=6090
 
 # PGAdmin
@@ -30,12 +30,7 @@ PGADMIN_DEFAULT_PASSWORD_FILE=adminpassword
 DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
 ```
 
-La base donnée est maintenant crée et consultable sur le port aloué au pgadmin.
-
 2 - Initialisation de prisma, qui est un ORM (Object-Relational Mapping) qui facilite l'interaction avec la base de données PostgreSQL. Nous allons utiliser Prisma pour définir le modèle de données et créer des tables dans PostgreSQL avec un schema.
-
-## Utilisation des variables d'environement dans angular
-Mettre le fichier "environements" dans frontend>src>
 
 ##### Maitenant les variables d'environnement sont mise en place 
 
@@ -46,14 +41,14 @@ Aller dans "backend" et faire :
 npm i                       #installation des dépendences
 npm run prisma-generate     #mets en place la connexion de prisma
 npm run prisma-db-push      #mets en place la connexion de prisma
-docker compose up           #base de donnée
-npm run start               #nestJS
+docker compose up -d        #base de donnée port 5050
+npm run start               #nestJS port 3000
 ```
 ## Comment run le projet frontend:
 Aller dans "frontend" et faire :
 ```
 npm i           #installation des dépendences
-npm run start   #Angular
+npm run start   #Angular port 4200
 ```
 
 
